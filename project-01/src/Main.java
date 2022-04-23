@@ -8,26 +8,24 @@ public class Main {
             final byte PERCENT = 100;
 
         try{
+            Scanner scanner = new Scanner(System.in);
 
+            // Take input
             System.out.print("Principle: ");
-            Scanner scanner1 = new Scanner(System.in);
-            int principle = scanner1.nextInt();
-
+            int principle = scanner.nextInt();
             System.out.print("Annual Interest Rate: ");
-            Scanner scanner2 = new Scanner(System.in);
-            float interestRate = scanner2.nextFloat();
-
+            float interestRate = scanner.nextFloat();
             System.out.print("Period (Years): ");
-            Scanner scanner3 = new Scanner(System.in);
-            short period = scanner3.nextShort();
+            short period = scanner.nextShort();
 
             // Calculate the result
             interestRate = (interestRate / PERCENT) / MONTHS_IN_YEAR;
             period *= 12;
             double resRaw = principle * ((interestRate * Math.pow((1 + interestRate), period)) / (Math.pow((1 + interestRate), period) - 1));
-            // Format the result
+
+            // Format the result and print
             NumberFormat formatter = NumberFormat.getCurrencyInstance();
-            System.out.print(formatter.format(resRaw));
+            System.out.print("Your monthly payment is: " + formatter.format(resRaw));
 
         } catch(Exception e) {
             System.out.println("Error occurred:" + e.toString());
