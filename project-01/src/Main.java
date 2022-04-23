@@ -4,6 +4,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args){
 
+            final byte MONTHS_IN_YEAR = 12;
+            final byte PERCENT = 100;
+
         try{
 
             System.out.print("Principle: ");
@@ -19,7 +22,7 @@ public class Main {
             short period = scanner3.nextShort();
 
             // Calculate the result
-            interestRate = (interestRate / 100) / 12;
+            interestRate = (interestRate / PERCENT) / MONTHS_IN_YEAR;
             period *= 12;
             double resRaw = principle * ((interestRate * Math.pow((1 + interestRate), period)) / (Math.pow((1 + interestRate), period) - 1));
             // Format the result
