@@ -2,14 +2,13 @@ import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Main {
+
     public static void main(String[] args){
-        final byte MONTHS_IN_YEAR = 12;
-        final byte PERCENT = 100;
 
         Scanner scanner = new Scanner(System.in);
         int principle = 0;
-        short period = 0;
         float interestRate = (float)0.00;
+        byte period = 0;
 
         // Take input
         System.out.print("Principle ($1K - $1M): ");
@@ -29,20 +28,30 @@ public class Main {
         }
 
         System.out.print("Period (Years, 1 - 30): ");
-        period = scanner.nextShort();
+        period = scanner.nextByte();
         while(period < 1 || period > 30){
             System.out.println("Please enter value between 1 - 30.");
             System.out.print("Period (Years, 1- 30): ");
-            period = scanner.nextShort();
+            period = scanner.nextByte();
         }
 
         // Calculate the result
-        interestRate = (interestRate / PERCENT) / MONTHS_IN_YEAR;
-        period *= 12;
-        double resRaw = principle * ((interestRate * Math.pow((1 + interestRate), period)) / (Math.pow((1 + interestRate), period) - 1));
+        double mortgageRaw = calculateMortgage(principle, interestRate, period);
 
         // Format the result and print
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        System.out.print("Your monthly payment is: " + formatter.format(resRaw));
+        System.out.print("Your monthly payment is: " + formatter.format(mortgageRaw));
+    }
+
+    public static double calculateMortgage(
+            int principle,
+            float interestRate,
+            byte period) {
+        final byte MONTHS_IN_YEAR = 12;
+        final byte PERCENT = 100;
+        interestRate = (interestRate / PERCENT) / MONTHS_IN_YEAR;
+        period *= MONTHS_IN_YEAR;
+        double mortgageRaw = principle * ((interestRate * Math.pow((1 + interestRate), period)) / (Math.pow((1 + interestRate), period) - 1));
+        return mortgageRaw;
     }
 }
