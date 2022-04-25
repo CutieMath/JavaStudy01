@@ -7,9 +7,11 @@ public class Main {
         final byte PERCENT = 100;
 
         Scanner scanner = new Scanner(System.in);
+        int principle = 0;
+        short period = 0;
+        float interestRate = (float)0.00;
 
         // Take input
-        int principle = 0;
         System.out.print("Principle ($1K - $1M): ");
         principle = scanner.nextInt();
         while(principle < 1000 || principle > 1_000_000_000){
@@ -18,7 +20,6 @@ public class Main {
             principle = scanner.nextInt();
         }
 
-        float interestRate = (float)0.00;
         System.out.print("Annual Interest Rate (0 - 30): ");
         interestRate = scanner.nextFloat();
         while(interestRate <= 0 || interestRate > 30) {
@@ -27,7 +28,6 @@ public class Main {
             interestRate = scanner.nextFloat();
         }
 
-        short period = 0;
         System.out.print("Period (Years, 1 - 30): ");
         period = scanner.nextShort();
         while(period < 1 || period > 30){
