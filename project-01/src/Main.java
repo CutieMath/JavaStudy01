@@ -4,6 +4,9 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args){
+        final byte MONTHS_IN_YEAR = 12;
+        final byte PERCENT = 100;
+
         // Take input
         String principlePrompt = "Principle ($1K - $1M): ";
         String interestRatePrompt = "Annual Interest Rate (1 - 30): ";
@@ -12,22 +15,29 @@ public class Main {
         float interestRate = (float)readNumber(interestRatePrompt, 1, 30);
         short period = (short)readNumber(periodPrompt, 1, 30);
 
-        // Calculate the result
-        double mortgageRaw = calculateMortgage(principle, interestRate, period);
-
-        // Format the result and print
-        NumberFormat formatter = NumberFormat.getCurrencyInstance();
-        System.out.print("Your monthly payment is: " + formatter.format(mortgageRaw));
-    }
-
-    public static double calculateMortgage(
-            int principle,
-            float interestRate,
-            short period) {
-        final byte MONTHS_IN_YEAR = 12;
-        final byte PERCENT = 100;
+        // Optimised the input
         interestRate = (interestRate / PERCENT) / MONTHS_IN_YEAR;
         period *= MONTHS_IN_YEAR;
+
+        // Calculate the result and format it
+        double mortgageRaw = calculateMortgage(principle, interestRate, period);
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+
+        // Format the result and print
+        System.out.println();
+        System.out.println("MORTGAGE");
+        System.out.println("----------");
+        System.out.print("Monthly Payments: " + formatter.format(mortgageRaw));
+
+        System.out.println();
+        System.out.println();
+
+        System.out.println("REMAINING BALANCE");
+        System.out.println("-------------------");
+        printRemainingMortgage(principle, interestRate, period);
+    }
+
+    public static double calculateMortgage(int principle, float interestRate, short period) {
         double mortgageRaw = principle * ((interestRate * Math.pow((1 + interestRate), period)) / (Math.pow((1 + interestRate), period) - 1));
         return mortgageRaw;
     }
@@ -43,5 +53,13 @@ public class Main {
             value = scanner.nextDouble();
         }
         return value;
+    }
+
+    public static void printRemainingMortgage(int principle, float interestRate, short period){
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        for(int i = 1; i <= period; i ++){
+            double balance = principle * ((Math.pow((1 + interestRate), period) - Math.pow((1 + interestRate), i)) / ( Math.pow((1 + interestRate), period) - 1));
+            System.out.println(formatter.format(balance));
+        }
     }
 }
