@@ -4,36 +4,13 @@ import java.util.Scanner;
 public class Main {
 
     public static void main(String[] args){
-
-        Scanner scanner = new Scanner(System.in);
-        int principle = 0;
-        short interestRate = (short)0.00;
-        byte period = 0;
-
         // Take input
-        System.out.print("Principle ($1K - $1M): ");
-        principle = scanner.nextInt();
-        while(principle < 1000 || principle > 1_000_000_000){
-            System.out.println("Please enter value between $1K - $1M.");
-            System.out.print("Principle ($1K - $1M): ");
-            principle = scanner.nextInt();
-        }
-
-        System.out.print("Annual Interest Rate (0 - 30): ");
-        interestRate = scanner.nextShort();
-        while(interestRate <= 0 || interestRate > 30) {
-            System.out.println("Please enter value between 0 - 30.");
-            System.out.print("Annual Interest Rate (0 - 30): ");
-            interestRate = scanner.nextShort();
-        }
-
-        System.out.print("Period (Years, 1 - 30): ");
-        period = scanner.nextByte();
-        while(period < 1 || period > 30){
-            System.out.println("Please enter value between 1 - 30.");
-            System.out.print("Period (Years, 1- 30): ");
-            period = scanner.nextByte();
-        }
+        String principlePrompt = "Principle ($1K - $1M): ";
+        String interestRatePrompt = "Annual Interest Rate (1 - 30): ";
+        String periodPrompt = "Period (Years, 1- 30):  ";
+        int principle = (int)readNumber(principlePrompt, 1000, 1_000_000_000);
+        float interestRate = (float)readNumber(interestRatePrompt, 1, 30);
+        short period = (short)readNumber(periodPrompt, 1, 30);
 
         // Calculate the result
         double mortgageRaw = calculateMortgage(principle, interestRate, period);
@@ -45,13 +22,26 @@ public class Main {
 
     public static double calculateMortgage(
             int principle,
-            short interestRate,
-            byte period) {
+            float interestRate,
+            short period) {
         final byte MONTHS_IN_YEAR = 12;
         final byte PERCENT = 100;
-        interestRate = (short)((interestRate / PERCENT) / MONTHS_IN_YEAR);
+        interestRate = (interestRate / PERCENT) / MONTHS_IN_YEAR;
         period *= MONTHS_IN_YEAR;
         double mortgageRaw = principle * ((interestRate * Math.pow((1 + interestRate), period)) / (Math.pow((1 + interestRate), period) - 1));
         return mortgageRaw;
+    }
+
+    public static double readNumber(String prompt, double min, double max){
+        Scanner scanner = new Scanner(System.in);
+        double value;
+        System.out.print(prompt);
+        value = scanner.nextDouble();
+        while(value < min || value > max){
+            System.out.println("Please enter value between " + min + " and " + max + ".");
+            System.out.print(prompt);
+            value = scanner.nextDouble();
+        }
+        return value;
     }
 }
