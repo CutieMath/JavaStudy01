@@ -7,7 +7,7 @@ public class Main {
 
         Scanner scanner = new Scanner(System.in);
         int principle = 0;
-        float interestRate = (float)0.00;
+        short interestRate = (short)0.00;
         byte period = 0;
 
         // Take input
@@ -20,11 +20,11 @@ public class Main {
         }
 
         System.out.print("Annual Interest Rate (0 - 30): ");
-        interestRate = scanner.nextFloat();
+        interestRate = scanner.nextShort();
         while(interestRate <= 0 || interestRate > 30) {
             System.out.println("Please enter value between 0 - 30.");
             System.out.print("Annual Interest Rate (0 - 30): ");
-            interestRate = scanner.nextFloat();
+            interestRate = scanner.nextShort();
         }
 
         System.out.print("Period (Years, 1 - 30): ");
@@ -45,11 +45,11 @@ public class Main {
 
     public static double calculateMortgage(
             int principle,
-            float interestRate,
+            short interestRate,
             byte period) {
         final byte MONTHS_IN_YEAR = 12;
         final byte PERCENT = 100;
-        interestRate = (interestRate / PERCENT) / MONTHS_IN_YEAR;
+        interestRate = (short)((interestRate / PERCENT) / MONTHS_IN_YEAR);
         period *= MONTHS_IN_YEAR;
         double mortgageRaw = principle * ((interestRate * Math.pow((1 + interestRate), period)) / (Math.pow((1 + interestRate), period) - 1));
         return mortgageRaw;
