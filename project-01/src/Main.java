@@ -18,12 +18,8 @@ public class Main {
         interestRate = (interestRate / PERCENT) / MONTHS_IN_YEAR;
         period *= MONTHS_IN_YEAR;
 
-        // Calculate the result and format it
-        double mortgageRaw = calculateMortgage(principle, interestRate, period);
-        NumberFormat formatter = NumberFormat.getCurrencyInstance();
-
         // Format the result and print
-        printMortage(mortgageRaw);
+        printMortgage(principle, interestRate, period);
         printRemainingMortgage(principle, interestRate, period);
     }
     public static double calculateMortgage(int principle, float interestRate, short period) {
@@ -42,8 +38,9 @@ public class Main {
         }
         return value;
     }
-    public static void printMortage(double mortgageRaw){
+    public static void printMortgage(int principle, float interestRate, short period){
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        double mortgageRaw = calculateMortgage(principle, interestRate, period);
         System.out.println();
         System.out.println("MORTGAGE");
         System.out.println("----------");
