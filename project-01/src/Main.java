@@ -2,11 +2,10 @@ import java.text.NumberFormat;
 import java.util.Scanner;
 
 public class Main {
+    final static byte MONTHS_IN_YEAR = 12;
+    final static byte PERCENT = 100;
 
     public static void main(String[] args){
-        final byte MONTHS_IN_YEAR = 12;
-        final byte PERCENT = 100;
-
         // Take input
         String principlePrompt = "Principle ($1K - $1M): ";
         String interestRatePrompt = "Annual Interest Rate (1 - 30): ";
@@ -28,10 +27,8 @@ public class Main {
         System.out.println("MORTGAGE");
         System.out.println("----------");
         System.out.print("Monthly Payments: " + formatter.format(mortgageRaw));
-
         System.out.println();
         System.out.println();
-
         System.out.println("REMAINING BALANCE");
         System.out.println("-------------------");
         printRemainingMortgage(principle, interestRate, period);
