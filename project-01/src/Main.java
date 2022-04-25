@@ -23,22 +23,13 @@ public class Main {
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
 
         // Format the result and print
-        System.out.println();
-        System.out.println("MORTGAGE");
-        System.out.println("----------");
-        System.out.print("Monthly Payments: " + formatter.format(mortgageRaw));
-        System.out.println();
-        System.out.println();
-        System.out.println("REMAINING BALANCE");
-        System.out.println("-------------------");
+        printMortage(mortgageRaw);
         printRemainingMortgage(principle, interestRate, period);
     }
-
     public static double calculateMortgage(int principle, float interestRate, short period) {
         double mortgageRaw = principle * ((interestRate * Math.pow((1 + interestRate), period)) / (Math.pow((1 + interestRate), period) - 1));
         return mortgageRaw;
     }
-
     public static double readNumber(String prompt, double min, double max){
         Scanner scanner = new Scanner(System.in);
         double value;
@@ -51,9 +42,19 @@ public class Main {
         }
         return value;
     }
-
+    public static void printMortage(double mortgageRaw){
+        NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        System.out.println();
+        System.out.println("MORTGAGE");
+        System.out.println("----------");
+        System.out.print("Monthly Payments: " + formatter.format(mortgageRaw));
+        System.out.println();
+    }
     public static void printRemainingMortgage(int principle, float interestRate, short period){
         NumberFormat formatter = NumberFormat.getCurrencyInstance();
+        System.out.println();
+        System.out.println("REMAINING BALANCE");
+        System.out.println("-------------------");
         for(int i = 1; i <= period; i ++){
             double balance = principle * ((Math.pow((1 + interestRate), period) - Math.pow((1 + interestRate), i)) / ( Math.pow((1 + interestRate), period) - 1));
             System.out.println(formatter.format(balance));
