@@ -4,6 +4,9 @@ public class Employee {
     private int baseSalary;
     private int hourlyRage;
 
+    // Note: Abstraction principle
+    // Hide unnecessary methods from other classes
+
     // Constructor
     public Employee(int baseSalary, int hourlyRage){
         setBaseSalary(baseSalary);
