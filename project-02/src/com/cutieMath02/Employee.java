@@ -7,7 +7,11 @@ public class Employee {
     // Note: Abstraction principle
     // Hide unnecessary methods from other classes
 
-    // Constructor
+    // Constructors
+    public Employee(int baseSalary){
+        setBaseSalary(baseSalary);
+        setHourlyRage(0);
+    }
     public Employee(int baseSalary, int hourlyRage){
         setBaseSalary(baseSalary);
         setHourlyRage(hourlyRage);
@@ -21,8 +25,8 @@ public class Employee {
         this.baseSalary = baseSalary;
     }
     private void setHourlyRage(int hourlyRage) {
-        if (hourlyRage <= 0){
-            throw new IllegalArgumentException("Hourly rate cannot be zero or less.");
+        if (hourlyRage < 0){
+            throw new IllegalArgumentException("Hourly rate cannot be negative.");
         }
         this.hourlyRage = hourlyRage;
     }
@@ -38,6 +42,11 @@ public class Employee {
     // Methods
     public int calculateWage(int extraHours){
         return baseSalary + hourlyRage * extraHours;
+    }
+    public int calculateWage(){
+        // Method overloading
+        // Don't overuse
+        return calculateWage(0);
     }
 
 
