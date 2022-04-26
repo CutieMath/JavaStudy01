@@ -4,14 +4,20 @@ public class Employee {
     private int baseSalary;
     private int hourlyRage;
 
+    // Constructor
+    public Employee(int baseSalary, int hourlyRage){
+        setBaseSalary(baseSalary);
+        setHourlyRage(hourlyRage);
+    }
+
     // Setter
-    public void setBaseSalary(int baseSalary) {
+    private void setBaseSalary(int baseSalary) {
         if (baseSalary <= 0){
             throw new IllegalArgumentException("Base salary cannot be zero or less.");
         }
         this.baseSalary = baseSalary;
     }
-    public void setHourlyRage(int hourlyRage) {
+    private void setHourlyRage(int hourlyRage) {
         if (hourlyRage <= 0){
             throw new IllegalArgumentException("Hourly rate cannot be zero or less.");
         }
@@ -19,10 +25,10 @@ public class Employee {
     }
 
     // Getter
-    public int getBaseSalary() {
+    private int getBaseSalary() {
         return baseSalary;
     }
-    public int getHourlyRage() {
+    private int getHourlyRage() {
         return hourlyRage;
     }
 
