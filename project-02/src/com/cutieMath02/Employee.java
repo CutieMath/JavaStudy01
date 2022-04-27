@@ -8,6 +8,11 @@ public class Employee {
     // Note: Abstraction principle
     // Hide unnecessary methods from other classes
 
+    // Static method
+    public static void printNumberOfEmployees(){
+        System.out.println(numberOfEmployees);
+    }
+
     // Constructors
     public Employee(int baseSalary){
         // Constructor overloading

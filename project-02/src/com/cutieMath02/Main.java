@@ -13,6 +13,6 @@ public class Main {
         int wage1 = employee1.calculateWage(extraHours);
         System.out.println(wage);
         System.out.println(wage1);
-        System.out.println(Employee.numberOfEmployees);
+        Employee.printNumberOfEmployees();
     }
 }
