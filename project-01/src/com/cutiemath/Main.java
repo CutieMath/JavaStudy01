@@ -1,5 +1,4 @@
-import java.text.NumberFormat;
-import java.util.Scanner;
+package com.cutiemath;
 
 public class Main {
     final static byte MONTHS_IN_YEAR = 12;
@@ -10,15 +9,15 @@ public class Main {
         String principlePrompt = "Principle ($1K - $1M): ";
         String interestRatePrompt = "Annual Interest Rate (1 - 30): ";
         String periodPrompt = "Period (Years, 1- 30):  ";
-        int principle = (int)readNumber(principlePrompt, 1000, 1_000_000_000);
-        float interestRate = (float)readNumber(interestRatePrompt, 1, 30);
-        short period = (short)readNumber(periodPrompt, 1, 30);
+        int principle = (int) Console.readNumber(principlePrompt, 1000, 1_000_000_000);
+        float interestRate = (float) Console.readNumber(interestRatePrompt, 1, 30);
+        short period = (short) Console.readNumber(periodPrompt, 1, 30);
 
         // Optimised the input
         interestRate = (interestRate / PERCENT) / MONTHS_IN_YEAR;
         period *= MONTHS_IN_YEAR;
 
-        // Create Mortgage instance
+        // Create com.cutiemath.Mortgage instance
         Mortgage mortgage = new Mortgage(principle, interestRate, period);
         mortgage.printMortgage();
         mortgage.printRemainingMortgage();
@@ -27,22 +26,6 @@ public class Main {
         // Format the result and print
 //        printMortgage(principle, interestRate, period);
 //        printRemainingMortgage(principle, interestRate, period);
-    }
-//    public static double calculateMortgage(int principle, float interestRate, short period) {
-//        double mortgageRaw = principle * ((interestRate * Math.pow((1 + interestRate), period)) / (Math.pow((1 + interestRate), period) - 1));
-//        return mortgageRaw;
-//    }
-    public static double readNumber(String prompt, double min, double max){
-        Scanner scanner = new Scanner(System.in);
-        double value;
-        System.out.print(prompt);
-        value = scanner.nextDouble();
-        while(value < min || value > max){
-            System.out.println("Please enter value between " + min + " and " + max + ".");
-            System.out.print(prompt);
-            value = scanner.nextDouble();
-        }
-        return value;
     }
 //    public static void printMortgage(int principle, float interestRate, short period){
 //        NumberFormat formatter = NumberFormat.getCurrencyInstance();

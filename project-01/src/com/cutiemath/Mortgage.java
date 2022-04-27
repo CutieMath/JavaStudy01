@@ -1,3 +1,5 @@
+package com.cutiemath;
+
 import java.text.NumberFormat;
 
 public class Mortgage {
@@ -55,6 +57,4 @@ public class Mortgage {
         double balance = principle * ((Math.pow((1 + interestRate), period) - Math.pow((1 + interestRate), i)) / ( Math.pow((1 + interestRate), period) - 1));
         return balance;
     }
-
-
 }
