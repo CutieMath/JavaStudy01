@@ -3,18 +3,20 @@ package com.cutieMath02;
 public class Employee {
     private int baseSalary;
     private int hourlyRage;
+    public static int numberOfEmployees; // static fields
 
     // Note: Abstraction principle
     // Hide unnecessary methods from other classes
 
     // Constructors
     public Employee(int baseSalary){
-        setBaseSalary(baseSalary);
-        setHourlyRage(0);
+        // Constructor overloading
+        this(baseSalary, 0);
     }
     public Employee(int baseSalary, int hourlyRage){
         setBaseSalary(baseSalary);
         setHourlyRage(hourlyRage);
+        numberOfEmployees ++;
     }
 
     // Setter
