@@ -13,8 +13,7 @@ public class MortgageReport {
         System.out.println();
         System.out.println("REMAINING BALANCE");
         System.out.println("-------------------");
-        for(int i = 1; i <= calc.getPeriod(); i ++){
-            double balance = calc.calculateBalance(i);
+        for (double balance : calc.getRemainingBalances()){
             System.out.println(formatter.format(balance));
         }
     }
