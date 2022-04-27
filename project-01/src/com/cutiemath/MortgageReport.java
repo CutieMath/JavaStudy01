@@ -3,18 +3,19 @@ package com.cutiemath;
 import java.text.NumberFormat;
 
 public class MortgageReport {
-    private static NumberFormat formatter = NumberFormat.getCurrencyInstance();
     private MortgageCalculator calc;
+    private final NumberFormat currencyFormatter;
 
     public MortgageReport(MortgageCalculator calc) {
         this.calc = calc;
+        currencyFormatter = NumberFormat.getCurrencyInstance();
     }
     public void printRemainingMortgage(){
         System.out.println();
         System.out.println("REMAINING BALANCE");
         System.out.println("-------------------");
         for (double balance : calc.getRemainingBalances()){
-            System.out.println(formatter.format(balance));
+            System.out.println(currencyFormatter.format(balance));
         }
     }
     public void printMortgage(){
@@ -22,7 +23,7 @@ public class MortgageReport {
         System.out.println();
         System.out.println("MORTGAGE");
         System.out.println("----------");
-        System.out.print("Monthly Payments: " + formatter.format(mortgageRaw));
+        System.out.print("Monthly Payments: " + currencyFormatter.format(mortgageRaw));
         System.out.println();
     }
 }
