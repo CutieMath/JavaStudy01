@@ -1,9 +1,6 @@
 package com.cutiemath;
 
 public class Main {
-    final static byte MONTHS_IN_YEAR = 12;
-    final static byte PERCENT = 100;
-
     public static void main(String[] args){
         // Take input
         String principlePrompt = "Principle ($1K - $1M): ";
@@ -13,33 +10,9 @@ public class Main {
         float interestRate = (float) Console.readNumber(interestRatePrompt, 1, 30);
         short period = (short) Console.readNumber(periodPrompt, 1, 30);
 
-        // Optimised the input
-        interestRate = (interestRate / PERCENT) / MONTHS_IN_YEAR;
-        period *= MONTHS_IN_YEAR;
-
         // Create com.cutiemath.Mortgage instance
         Mortgage mortgage = new Mortgage(principle, interestRate, period);
         mortgage.printMortgage();
         mortgage.printRemainingMortgage();
-
     }
-//    public static void printMortgage(int principle, float interestRate, short period){
-//        NumberFormat formatter = NumberFormat.getCurrencyInstance();
-//        double mortgageRaw = calculateMortgage(principle, interestRate, period);
-//        System.out.println();
-//        System.out.println("MORTGAGE");
-//        System.out.println("----------");
-//        System.out.print("Monthly Payments: " + formatter.format(mortgageRaw));
-//        System.out.println();
-//    }
-//    public static void printRemainingMortgage(int principle, float interestRate, short period){
-//        NumberFormat formatter = NumberFormat.getCurrencyInstance();
-//        System.out.println();
-//        System.out.println("REMAINING BALANCE");
-//        System.out.println("-------------------");
-//        for(int i = 1; i <= period; i ++){
-//            double balance = principle * ((Math.pow((1 + interestRate), period) - Math.pow((1 + interestRate), i)) / ( Math.pow((1 + interestRate), period) - 1));
-//            System.out.println(formatter.format(balance));
-//        }
-//    }
 }

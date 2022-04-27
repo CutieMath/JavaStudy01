@@ -7,6 +7,9 @@ public class Mortgage {
     private int principle;
     private float interestRate;
     private short period;
+    private final byte MONTHS_IN_YEAR = 12;
+    private final byte PERCENT = 100;
+
 
     // Constructor
     public Mortgage(int principle, float interestRate, short period){
@@ -20,9 +23,11 @@ public class Mortgage {
         this.principle = principle;
     }
     private void setInterestRate(float interestRate) {
+        interestRate = (interestRate / PERCENT) / MONTHS_IN_YEAR;
         this.interestRate = interestRate;
     }
     private void setPeriod(short period){
+        period *= MONTHS_IN_YEAR;
         this.period = period;
     }
 
