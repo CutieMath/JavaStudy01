@@ -22,10 +22,6 @@ public class Main {
         mortgage.printMortgage();
         mortgage.printRemainingMortgage();
 
-
-        // Format the result and print
-//        printMortgage(principle, interestRate, period);
-//        printRemainingMortgage(principle, interestRate, period);
     }
 //    public static void printMortgage(int principle, float interestRate, short period){
 //        NumberFormat formatter = NumberFormat.getCurrencyInstance();
