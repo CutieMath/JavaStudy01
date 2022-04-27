@@ -10,9 +10,9 @@ public class Main {
         float interestRate = (float) Console.readNumber(interestRatePrompt, 1, 30);
         short period = (short) Console.readNumber(periodPrompt, 1, 30);
 
-        // Create com.cutiemath.Mortgage instance
-        Mortgage mortgage = new Mortgage(principle, interestRate, period);
-        mortgage.printMortgage();
-        mortgage.printRemainingMortgage();
+        MortgageCalculator calc = new MortgageCalculator(principle, interestRate, period);
+        MortgageReport report = new MortgageReport(calc);
+        report.printMortgage();
+        report.printRemainingMortgage();
     }
 }
