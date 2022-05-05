@@ -1,8 +1,12 @@
 package com.cutieMath02;
 
 import java.util.Arrays;
+import java.util.HashSet;
+import java.util.Set;
 
 public class Solution {
+
+    // 02-05-22
     public int maxSatisfied(int[] customers, int[] grumpy, int minutes) {
         // cus:    {1,0,1,2,1,1,7,5}; // get the max satisfaction of cus first
         // grumpy: {0,1,0,1,0,1,0,1};
@@ -22,6 +26,8 @@ public class Solution {
         }
         return res;
     }
+
+    // 03-05-22
     public int maxFrequency(int[] nums, int k) {
         // [1, 1, 1, 2, 2, 4]
         //     l     r
@@ -48,13 +54,14 @@ public class Solution {
         return res;
     }
 
+    // 04-05-22
     public int maxConsecutiveAnswers(String answerKey, int k) {
         int res = 0;
         res = helper(answerKey, res, k, 'T');
         res = helper(answerKey, res, k, 'F');
         return res;
     }
-    public int helper(String answerKey, int res, int k, char answer){
+    private int helper(String answerKey, int res, int k, char answer){
         char oppoAnswer = (answer == 'T') ? 'F' : 'T';
         int r = 0;
         int flip = 0;
@@ -73,4 +80,21 @@ public class Solution {
         }
         return res;
     }
+
+    // 04-05-22 https://leetcode.com/problems/longest-substring-without-repeating-characters/
+    public int lengthOfLongestSubstring(String s) {
+        Set<Character> charSet = new HashSet<>();
+        int l = 0;
+        int res = 0;
+        for(int r = 0; r < s.length(); r ++){
+            while(charSet.contains(s.charAt(r))){
+                charSet.remove(s.charAt(l)); // remove the left char
+                l ++;
+            }
+            charSet.add(s.charAt(r)); // add in right char
+            res = Math.max(res, r - l + 1);
+        }
+        return res;
+    }
+
 }
