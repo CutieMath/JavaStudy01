@@ -4,9 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        String s = "abcabcbb";
+        String s1 = "abcd";
+        String s2 = "qionrqabcd";
         Solution solution = new Solution();
-        int res = solution.lengthOfLongestSubstring(s);
+        boolean res = solution.checkInclusion(s1, s2);
         System.out.println(res);
 
         // Note:

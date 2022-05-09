@@ -97,4 +97,41 @@ public class Solution {
         return res;
     }
 
+    // 09-05-22 https://leetcode.com/problems/permutation-in-string/
+    public boolean checkInclusion(String s1, String s2) {
+        int len1 = s1.length();
+        int len2 = s2.length();
+        if (len1 > len2)
+            return false;
+
+        // Use array to represent the map
+        int[] countMap = new int[26];
+
+        // 1. Count the length of s1 then check if contains permutation
+        for (int i = 0; i < len1; i ++){
+            countMap[s1.charAt(i) - 'a']++;
+            countMap[s2.charAt(i) - 'a']--;
+            System.out.println(Arrays.toString(countMap));
+        }
+        if(containsPermutation(countMap))
+            return true;
+
+        // 2. Count the rest of s2 to check permutation
+        for(int i = len1; i < len2; i ++){
+            countMap[s2.charAt(i) - 'a'] --;
+            countMap[s2.charAt(i - len1) - 'a'] ++;
+            System.out.println("Run rest" + Arrays.toString(countMap));
+            if(containsPermutation(countMap))
+                return true;
+        }
+        return false;
+    }
+    private boolean containsPermutation(int[] countMap){
+        for(int i = 0; i < 26; i ++){
+            if(countMap[i] != 0)
+                return false;
+        }
+        return true;
+    }
+
 }
