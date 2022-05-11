@@ -1,8 +1,6 @@
 package com.cutieMath02;
 
-import java.util.Arrays;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.*;
 
 public class Solution {
 
@@ -99,6 +97,9 @@ public class Solution {
 
     // 09-05-22 https://leetcode.com/problems/permutation-in-string/
     public boolean checkInclusion(String s1, String s2) {
+        // [0, 0, 0, 0, 0 ...]
+        //  a  b  c  d  e ...
+
         int len1 = s1.length();
         int len2 = s2.length();
         if (len1 > len2)
@@ -133,5 +134,34 @@ public class Solution {
         }
         return true;
     }
+
+    // 11/05/22 https://leetcode.com/problems/interval-list-intersections/
+    public int[][] intervalIntersection(int[][] firstList, int[][] secondList) {
+        List<int[]> res = new LinkedList<>();
+        int len1 = firstList.length;
+        int len2 = secondList.length;
+        int pointer1 = 0;
+        int pointer2 = 0;
+        while (pointer1 < len1 && pointer2 < len2){
+            int s1 = firstList[pointer1][0]; // starting of firstList
+            int e1 = firstList[pointer1][1]; // ending of firstList
+            int s2 = secondList[pointer2][0]; // Starting of secondList
+            int e2 = secondList[pointer2][1]; // Ending of secondList
+            // Add intersection
+            if(s1 <= s2 && s2 <= e1 || s2 <= s1 && s1 <= e2){
+                int s = Math.max(s1, s2);
+                int e = Math.min(e1, e2);
+                int[] cur = {s, e};
+                res.add(cur);
+            }
+            if(e2 > e1){
+                pointer1 ++;
+            } else {
+                pointer2 ++;
+            }
+        }
+        return res.toArray(new int[res.size()][2]);
+    }
+
 
 }
