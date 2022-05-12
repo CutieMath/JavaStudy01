@@ -1,6 +1,7 @@
 package com.cutieMath02;
 
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class Solution {
 
@@ -182,18 +183,25 @@ public class Solution {
             return 0;
         // 2. Sort
         Arrays.sort(nums1);
-        Arrays.sort(nums2);
+        // This is just to sort in reverse
+        nums2 = IntStream.of(nums2).boxed().sorted(Comparator.reverseOrder()).mapToInt(i -> i).toArray();
         // 3. Start the algo
         int res = 0;
         int i = 0;
-        int j = nums2.length - 1;
-        while (sum2 > sum1){
-            if (j < 0 || i < nums1.length && 6 - nums1[i] > nums2[j] - 1) {
-                sum1 += 6 - nums1[i++];
-            }else {
-                sum2 -= nums2[j--] - 1;
+        int j = 0;
+        while (sum1 != sum2){
+            int diff = sum2 - sum1;
+            int d1 = (i == len1) ? 0 : 6 - nums1[i];
+            int d2 = (j == len2) ? 0 : nums2[j] - 1;
+            int d = Math.min(diff, Math.max(d1, d2)); // use the min to check if the answer is equal
+            if (d1 >= d2){
+                sum1 += d;
+                i ++;
+            } else {
+                sum2 -= d;
+                j ++;
             }
-            ++ res;
+            res ++;
         }
         return res;
     }
