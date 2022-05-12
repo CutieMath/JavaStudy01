@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int[][] firstList = {{0,2},{5,10},{13,23},{24,25}};
-        int[][] secondList = {{1,5},{8,12},{15,24},{25,26}};
+        int[] nums1 = {5,6,4,3,1,2};
+        int[] nums2 = {6,3,3,1,4,5,3,4,1,3,4};
         Solution solution = new Solution();
-        int[][] res = solution.intervalIntersection(firstList, secondList);
-        System.out.println(Arrays.deepToString(res));
+        int res = solution.minOperations(nums1, nums2);
+        System.out.println(res);
 
         // Note:
         // Static: belongs to a class

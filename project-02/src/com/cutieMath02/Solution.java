@@ -163,5 +163,40 @@ public class Solution {
         return res.toArray(new int[res.size()][2]);
     }
 
+    // 12/05/22 https://leetcode.com/problems/equal-sum-arrays-with-minimum-number-of-operations/
+    public int minOperations(int[] nums1, int[] nums2) {
+        int len1 = nums1.length;
+        int len2 = nums2.length;
+
+        //  not possible case
+        if (Math.min(len1, len2) * 6 < Math.max(len1, len2))
+            return -1;
+
+        // possible case
+        int sum1 = Arrays.stream(nums1).sum();
+        int sum2 = Arrays.stream(nums2).sum();
+        // 1. Switch position of the two so that the algo only need to cater for one situation
+        if (sum1 > sum2)
+            return minOperations(nums2, nums1);
+        if (sum1 == sum2)
+            return 0;
+        // 2. Sort
+        Arrays.sort(nums1);
+        Arrays.sort(nums2);
+        // 3. Start the algo
+        int res = 0;
+        int i = 0;
+        int j = nums2.length - 1;
+        while (sum2 > sum1){
+            if (j < 0 || i < nums1.length && 6 - nums1[i] > nums2[j] - 1) {
+                sum1 += 6 - nums1[i++];
+            }else {
+                sum2 -= nums2[j--] - 1;
+            }
+            ++ res;
+        }
+        return res;
+    }
+
 
 }
