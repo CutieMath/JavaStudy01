@@ -206,5 +206,32 @@ public class Solution {
         return res;
     }
 
+    // 18/05 https://leetcode.com/problems/find-subsequence-of-length-k-with-the-largest-sum/
+    public int[] maxSubsequence(int[] nums, int k) {
+        // Create a minHeap priority queue
+        PriorityQueue<int[]> pq = new PriorityQueue<>((n1, n2) -> n1[0] - n2[0]); // https://stackoverflow.com/questions/6065710/how-does-javas-priorityqueue-differ-from-a-min-heap
+        for (int i = 0; i < nums.length; i ++){
+            pq.offer(new int[]{nums[i], i}); // store value and index in priority queue
+            if(pq.size() > k){
+                pq.poll();
+            }
+        }
+
+        // add into result
+        Set<Integer> indx = new HashSet<>(); // create an index set to store the results
+        while (!pq.isEmpty()){
+            int[] top = pq.poll();
+            indx.add(top[1]);
+        }
+        int[] res = new int[k];
+        int resIndx = 0;
+        for (int i = 0; i < nums.length; i ++){
+            if(indx.contains(i)){
+                res[resIndx] = nums[i];
+                resIndx ++;
+            }
+        }
+        return res;
+    }
 
 }
