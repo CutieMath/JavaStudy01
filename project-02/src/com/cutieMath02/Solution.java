@@ -234,4 +234,30 @@ public class Solution {
         return res;
     }
 
+    // 24/05 https://leetcode.com/problems/find-minimum-in-rotated-sorted-array/
+    public int findMin(int[] nums) {
+        int res = nums[0];
+        int l = 0;
+        int r = nums.length - 1;
+
+        while (l <= r){
+            // 1. If the array is already sorted
+            if (nums[l] < nums[r]){
+                res = Math.min(res, nums[l]);
+                break;
+            }
+
+            // 2.
+            int m = (l + r) / 2;
+            res = Math.min(res, nums[m]);
+            if (nums[m] >= nums[l]){
+                l = m + 1;
+            } else {
+                r = m - 1;
+            }
+        }
+        return res;
+    }
+
+
 }

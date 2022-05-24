@@ -4,11 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int[] nums = {2,1,3,3};
-        int k = 2;
+        int[] nums = {4,5,6,7,2,1,2};
         Solution solution = new Solution();
-        int[] res = solution.maxSubsequence(nums, k);
-        System.out.println(Arrays.toString(res));
+        int res = solution.findMin(nums);
+        System.out.println(res);
 
         // Note:
         // Static: belongs to a class
