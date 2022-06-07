@@ -4,9 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int[] nums = {4,5,6,7,2,1,2};
+        int[] nums = {4,5,6,7,0,1,2};
+        int target = 0;
         Solution solution = new Solution();
-        int res = solution.findMin(nums);
+        int res = solution.search(nums, target);
         System.out.println(res);
 
         // Note:
