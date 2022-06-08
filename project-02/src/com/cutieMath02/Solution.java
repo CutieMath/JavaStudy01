@@ -296,30 +296,36 @@ public class Solution {
     // 08/06/22 https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
     public boolean searchII(int[] nums, int target) {
         // Sorted => Binary search
-        // 4 5 6 0 0 2 3
+        // normal:  4 5 6 0 0 2 3
+        // special: 3 1 2 3 3 3 3
 
-        int l = 0;
-        int r = nums.length - 1;
-        while (l <= r){
-            int mid = (l + r) / 2;
+        int low = 0;
+        int high = nums.length - 1;
+        while (low <= high){
+            int mid = (low + high) / 2;
             if(nums[mid] == target){
                 return true;
             }
 
-            if(nums[l] == nums[mid] && nums[r] == nums[mid]){
-                l ++;
-                r --;
-            } else if(nums[l] <= nums[mid]){
-                if(nums[l] <= target && nums[mid] > target) {
-                    r = mid - 1;
+            // Special case
+            if(nums[low] == nums[mid] && nums[high] == nums[mid]){
+                low ++;
+                high --;
+
+            // Smaller array on the left
+            } else if(nums[low] <= nums[mid]){
+                if(nums[mid] > target && nums[low] <= target) {
+                    high = mid - 1;
                 } else {
-                    l = mid + 1;
+                    low = mid + 1;
                 }
+
+            // Smaller array on the right
             } else {
-                if(nums[mid] < target && nums[r] >= target){
-                    l = mid + 1;
+                if(nums[mid] < target && nums[high] >= target){
+                    low = mid + 1;
                 } else {
-                    r = mid - 1;
+                    high = mid - 1;
                 }
             }
         }
