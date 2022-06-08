@@ -265,6 +265,8 @@ public class Solution {
         int l = 0;
         int r = nums.length - 1;
 
+        // 4,5,6,7,8,0,1,2
+
         while (l <= r){
             int mid = (l + r) / 2;
             if (target == nums[mid]){
@@ -289,6 +291,41 @@ public class Solution {
             }
         }
         return -1;
+    }
+
+    // 08/06/22 https://leetcode.com/problems/search-in-rotated-sorted-array-ii/
+    public boolean searchII(int[] nums, int target) {
+        // Sorted => Binary search
+        // 4 5 6 0 0 2 3
+
+        int l = 0;
+        int r = nums.length - 1;
+        while (l <= r){
+            int mid = (l + r) / 2;
+            if(nums[mid] == target){
+                return true;
+            }
+
+            if(nums[l] == nums[mid] && nums[r] == nums[mid]){
+                l ++;
+                r --;
+            } else if(nums[l] <= nums[mid]){
+                if(nums[l] <= target && nums[mid] > target) {
+                    r = mid - 1;
+                } else {
+                    l = mid + 1;
+                }
+            } else {
+                if(nums[mid] < target && nums[r] >= target){
+                    l = mid + 1;
+                } else {
+                    r = mid - 1;
+                }
+            }
+        }
+        return false;
+
+
     }
 
 }
