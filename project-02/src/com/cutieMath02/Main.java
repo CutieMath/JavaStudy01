@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int[] nums = {1,0, 1, 1, 1};
-        int target = 0;
+        int[] nums = {5,7,7,8,8,10};
+        int target = 7;
         Solution solution = new Solution();
-        boolean res = solution.searchII(nums, target);
-        System.out.println(res);
+        int[] res = solution.searchRange(nums, target);
+        System.out.println(Arrays.toString(res));
 
         // Note:
         // Static: belongs to a class

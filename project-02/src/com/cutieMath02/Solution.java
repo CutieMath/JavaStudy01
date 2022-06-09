@@ -330,8 +330,44 @@ public class Solution {
             }
         }
         return false;
+    }
 
+    // 09/06/22 https://leetcode.com/problems/find-first-and-last-position-of-element-in-sorted-array/
+    public int[] searchRange(int[] nums, int target) {
+        int left = this.binSearch(nums, target, true);
+        int right = this.binSearch(nums, target, false);
+        int[] res = {left, right};
+        return res;
+    }
 
+    private int binSearch(int[] nums, int target, boolean leftBias){
+        int l = 0;
+        int r = nums.length - 1;
+        int i = -1;
+        while (l <= r){
+            int mid = (l + r) / 2;
+
+            // Search right
+            if(target > nums[mid]){
+                l = mid + 1;
+
+            // Search left
+            } else if (target < nums[mid]){
+                r = mid - 1;
+
+            // Add into result
+            } else {
+                i = mid;
+
+                // Add extra step to continue the binSearch for dups
+                if (leftBias){
+                    r = mid - 1;
+                } else {
+                    l = mid + 1;
+                }
+            }
+        }
+        return i;
     }
 
 }
