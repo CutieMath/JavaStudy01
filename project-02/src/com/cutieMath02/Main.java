@@ -4,11 +4,11 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int[] nums = {5,7,7,8,8,10};
-        int target = 7;
+        int dividend = 10;
+        int divisor = 3;
         Solution solution = new Solution();
-        int[] res = solution.searchRange(nums, target);
-        System.out.println(Arrays.toString(res));
+        int res = solution.divide(dividend, divisor);
+        System.out.println(res);
 
         // Note:
         // Static: belongs to a class

@@ -370,4 +370,36 @@ public class Solution {
         return i;
     }
 
+    // 14/06/22
+    public int divide(int dividend, int divisor) {
+        // edge case
+        if(dividend == Integer.MIN_VALUE && divisor == -1)
+            return Integer.MAX_VALUE;
+
+        // check neg/pos sign and change all to negative
+        boolean negSign = ((dividend < 0) == (divisor < 0));
+        dividend = (dividend > 0) ? -dividend: dividend;
+        divisor = (divisor > 0) ? -divisor: divisor;
+
+        // put into helper function
+        int res = helper(dividend, divisor);
+        return negSign ? res : -res;
+    }
+
+    private int helper (int dividend, int divisor){
+        if (dividend > divisor) // -2 / -5
+            return 0;
+
+        int _sum = divisor;
+        int m = 1;
+
+        while ((Integer.MIN_VALUE - _sum < _sum) && (_sum * 2 > dividend)) {
+            _sum *= 2;
+            m *= 2;
+        }
+
+        return m + helper(dividend - _sum, divisor);
+    }
+
+
 }
