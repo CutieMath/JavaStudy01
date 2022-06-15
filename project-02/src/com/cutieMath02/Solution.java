@@ -401,5 +401,39 @@ public class Solution {
         return m + helper(dividend - _sum, divisor);
     }
 
+    // 15/06/22 https://leetcode.com/problems/count-good-numbers/
+    public int countGoodNumbers(long n) {
+
+        // 1. find the result
+        // odd = 4   (2, 3, 5, 7)
+        // even = 5  (0, 2, 4, 6, 8)
+
+        // 5 4 5 4 => combination
+        // 0 1 2 3 => position
+
+        // 5 x 4 x 5 x 4 => 5 ^ n/2 x 4 ^ n/2 x 1 (if n is even)
+        //               => 5 ^ n/2 x 4 ^ n/2 x 5 (If n is odd)
+
+        // (5 x 4) ^ n/2
+        // 20 ^ n/2
+
+        // 2. use fast way to find the result
+        // 2 ^ 8 = 4 ^ 4 = 16 ^ 2 => in every iteration, increase the base
+
+        int MOD = 1_000_000_007;
+        long res = (n % 2 == 0) ? 1 : 5;
+        long x = 20;
+
+        // use the binary way to calculate the result
+        for (long i = n / 2; i > 0; i /= 2){
+            if ( i % 2 != 0){
+                res = res * x % MOD;
+            }
+            x = x * x % MOD;
+        }
+        return (int) res;
+    }
+
+
 
 }

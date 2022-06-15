@@ -4,10 +4,9 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int dividend = 10;
-        int divisor = 3;
+        int  n = 1;
         Solution solution = new Solution();
-        int res = solution.divide(dividend, divisor);
+        int res = solution.countGoodNumbers(n);
         System.out.println(res);
 
         // Note:
