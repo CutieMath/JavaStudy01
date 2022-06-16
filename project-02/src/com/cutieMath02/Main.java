@@ -4,9 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int  n = 1;
+        int  days = 5;
+        int[] weights = {1,2,3,4,5,6,7,8,9,10};
         Solution solution = new Solution();
-        int res = solution.countGoodNumbers(n);
+        int res = solution.shipWithinDays(weights, days);
         System.out.println(res);
 
         // Note:

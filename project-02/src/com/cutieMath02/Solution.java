@@ -434,6 +434,34 @@ public class Solution {
         return (int) res;
     }
 
+    //16/06/22 https://leetcode.com/problems/capacity-to-ship-packages-within-d-days/
+    public int shipWithinDays(int[] weights, int days) {
+        int l = Arrays.stream(weights).max().getAsInt();
+        int r = IntStream.of(weights).sum();
 
+        while (l < r){
+            int mid = (l + r) / 2;
+            if (canShip(mid, weights, days)){
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return r;
+    }
 
+    private boolean canShip(int candidate, int[] weights, int days){
+        int currWeight = 0;
+        int daysTaken = 1;
+
+        for (int i = 0; i < weights.length; i ++){
+            currWeight += weights[i];
+            if (currWeight > candidate){
+                daysTaken += 1;
+                currWeight = weights[i];
+            }
+        }
+
+        return daysTaken <= days;
+    }
 }
