@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int  days = 5;
-        int[] weights = {1,2,3,4,5,6,7,8,9,10};
+        int  threshold=6;
+        int[] nums = {1, 2, 5, 9};
         Solution solution = new Solution();
-        int res = solution.shipWithinDays(weights, days);
+        int res = solution.smallestDivisor(nums, threshold);
         System.out.println(res);
 
         // Note:
