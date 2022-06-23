@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int  threshold=6;
-        int[] nums = {1, 2, 5, 9};
+        int target = 10;
+        int[] arr = {4,9,3};
         Solution solution = new Solution();
-        int res = solution.smallestDivisor(nums, threshold);
+        int res = solution.findBestValue(arr, target);
         System.out.println(res);
 
         // Note:

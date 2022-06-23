@@ -465,6 +465,7 @@ public class Solution {
         return daysTaken <= days;
     }
 
+    // 21/06/22 https://leetcode.com/problems/find-the-smallest-divisor-given-a-threshold/
     public int smallestDivisor(int[] nums, int threshold) {
         int l = 1;
         int r = Arrays.stream(nums).max().getAsInt();
@@ -476,11 +477,9 @@ public class Solution {
                 r = mid - 1;
             }
         }
-
         return l;
     }
-
-    private boolean metCriteria(double mid, int[] nums, int threshold){
+    private boolean metCriteria(int mid, int[] nums, int threshold){
         int _sum = 0;
         for(int i = 0; i < nums.length; i ++){
             _sum += Math.ceil(nums[i] / mid);
@@ -488,5 +487,32 @@ public class Solution {
         return _sum > threshold;
     }
 
+    // 23/06/22 https://leetcode.com/problems/sum-of-mutated-array-closest-to-target/
+    int max = 0;
+    public int findBestValue(int[] arr, int target) {
+        int len = arr.length;
+        for (int i = 0; i < len; i ++)
+            max = Math.max(max, arr[i]);
 
+        int l = 0;
+        int r = max;
+        while(l < r){
+            int mid = l + (r - l) / 2;
+            if(check(arr, mid, target) <= check(arr, mid + 1, target))
+                r = mid;
+            else
+                l = mid + 1;
+        }
+        return l;
+    }
+    private int check(int[] arr, int value, int target){
+        int sum = 0;
+        for (int e : arr){
+            if (e > value)
+                sum += value;
+            else
+                sum += e;
+        }
+        return Math.abs(sum - target);
+    }
 }
