@@ -497,7 +497,7 @@ public class Solution {
         int l = 0;
         int r = max;
         while(l < r){
-            int mid = l + (r - l) / 2;
+             int mid = l + (r - l) / 2;
             if(check(arr, mid, target) <= check(arr, mid + 1, target))
                 r = mid;
             else
@@ -514,5 +514,47 @@ public class Solution {
                 sum += e;
         }
         return Math.abs(sum - target);
+    }
+
+    public int minDays(int[] bloomDay, int m, int k) {
+        // edge
+        if(m * k > bloomDay.length)
+            return -1;
+
+        // binary search starts
+        int left = 1;
+        int right = 1;
+        int mid;
+        // get the lower and upper bound
+        for (int i: bloomDay){
+            left = Math.min(left, i);
+            right = Math.max(right, i);
+        }
+        while (left < right) {
+            mid = left + (right - left) / 2;
+            if (canMake(mid, m, k, bloomDay)) {
+                right = mid;
+            } else {
+                left = mid + 1;
+            }
+        }
+        return left;
+    }
+    private boolean canMake(int val, int bouquet, int numOfflowers, int[] bloom){
+        int count = 0;
+        for (int i:bloom){
+            if (i <= val){
+                count ++;
+                if(count == numOfflowers){
+                    bouquet --;
+                    count = 0;
+                    if (bouquet == 0)
+                        return true;
+                }
+            } else {
+                count = 0;
+            }
+        }
+        return false;
     }
 }

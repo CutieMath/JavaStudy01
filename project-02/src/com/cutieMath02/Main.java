@@ -4,10 +4,11 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int target = 10;
-        int[] arr = {4,9,3};
+        int[] bloomDay = {1,10,3,10,2};
+        int m = 3;
+        int k = 1;
         Solution solution = new Solution();
-        int res = solution.findBestValue(arr, target);
+        int res = solution.minDays(bloomDay, m, k);
         System.out.println(res);
 
         // Note:
