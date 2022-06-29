@@ -557,4 +557,26 @@ public class Solution {
         }
         return false;
     }
+
+    // 29/06/22
+    public int rangeSum(int[] nums, int n, int left, int right) {
+        int MOD = 1_000_000_007;
+        int nn = n*(n + 1) / 2;
+        long[] prefixes = new long[nn];
+        int k = 0;
+        for (int i = 0; i < n; i++) {
+            long currSum = 0;
+            for (int j = i; j < n; j++) {
+                currSum += nums[j];
+                prefixes[k++] = currSum;
+            }
+        }
+        Arrays.sort(prefixes);
+        long result = 0;
+        while (left <= right) {
+            result += prefixes[left - 1];
+            left++;
+        }
+        return (int)(result % MOD);
+    }
 }
