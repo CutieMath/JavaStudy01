@@ -579,4 +579,34 @@ public class Solution {
         }
         return (int)(result % MOD);
     }
+
+    // 05/07/22
+    public int maxDistance(int[] position, int m) {
+        Arrays.sort(position);
+        int res = 0;
+        int head = 0;
+        int tail = position[position.length - 1];
+        while(head <= tail){
+            int mid = head + (tail - head) / 2;
+            if(metGoodCondition(m, position, mid)){
+                res = mid;
+                head = mid + 1;
+            } else {
+                tail = mid - 1;
+            }
+        }
+        return res;
+    }
+
+    private boolean metGoodCondition(int numOfBalls, int[] position, int max){
+        int count = 1;
+        int last = position[0];
+        for(int i = 0; i < position.length; i ++ ){
+            if(position[i] - last >= max){
+                last = position[i];
+                count ++;
+            }
+        }
+        return count >= numOfBalls;
+    }
 }

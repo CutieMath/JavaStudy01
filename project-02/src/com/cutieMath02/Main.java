@@ -4,12 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int nums[] = {1,2,3,4};
-        int n = 4;
-        int left = 1;
-        int right = 5;
+        int[] position = {1,2,3,4,7};
+        int m = 3;
         Solution solution = new Solution();
-        int res = solution.rangeSum(nums, n, left, right);
+        int res = solution.maxDistance(position, m);
         System.out.println(res);
 
         // Note:
