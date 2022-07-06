@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int[] position = {1,2,3,4,7};
-        int m = 3;
+        int[] ribbons = {9,7,5};
+        int k = 4;
         Solution solution = new Solution();
-        int res = solution.maxDistance(position, m);
+        int res = solution.maxLength(ribbons, k);
         System.out.println(res);
 
         // Note:

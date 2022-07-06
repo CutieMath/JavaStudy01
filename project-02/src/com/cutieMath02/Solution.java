@@ -580,7 +580,7 @@ public class Solution {
         return (int)(result % MOD);
     }
 
-    // 05/07/22
+    // 05/07/22 1552 https://leetcode.com/problems/magnetic-force-between-two-balls/
     public int maxDistance(int[] position, int m) {
         Arrays.sort(position);
         int res = 0;
@@ -608,5 +608,28 @@ public class Solution {
             }
         }
         return count >= numOfBalls;
+    }
+
+    public int maxLength(int[] ribbons, int k) {
+        int l = 1;
+        int r = Arrays.stream(ribbons).max().getAsInt();
+
+        while(l <= r){
+            int mid = (l + r) / 2;
+            if (canCut(ribbons, k, mid)){
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return r;
+    }
+
+    private boolean canCut(int[] ribbons, int k, int ribbonLength){
+        int cut = 0;
+        for (int i = 0; i < ribbons.length; i ++){
+            cut += ribbons[i] / ribbonLength;
+        }
+        return cut >= k;
     }
 }
