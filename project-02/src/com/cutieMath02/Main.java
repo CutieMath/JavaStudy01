@@ -4,10 +4,9 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int[] ribbons = {9,7,5};
-        int k = 4;
+        int[] nums = {3,5};
         Solution solution = new Solution();
-        int res = solution.maxLength(ribbons, k);
+        int res = solution.specialArray(nums);
         System.out.println(res);
 
         // Note:

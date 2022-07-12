@@ -610,6 +610,7 @@ public class Solution {
         return count >= numOfBalls;
     }
 
+    // 06/97 https://github.com/doocs/leetcode/blob/main/solution/1800-1899/1891.Cutting%20Ribbons/README_EN.md
     public int maxLength(int[] ribbons, int k) {
         int l = 1;
         int r = Arrays.stream(ribbons).max().getAsInt();
@@ -632,4 +633,27 @@ public class Solution {
         }
         return cut >= k;
     }
+
+    // 12/07 https://leetcode.com/problems/special-array-with-x-elements-greater-than-or-equal-x/
+    public int specialArray(int[] nums) {
+        int r = nums.length;
+        int l = 1;
+        while(l <= r){
+            int mid = r - (r-l) / 2;
+            int count = 0;
+            for (int x : nums) {
+                if (x >= mid)
+                    count++;
+            }
+            if(count == mid)
+                return mid;
+            else if (count > mid)
+                l = mid + 1;
+            else
+                r = mid - 1;
+        }
+        return -1;
+    }
+
+
 }
