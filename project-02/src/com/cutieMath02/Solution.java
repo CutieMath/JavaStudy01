@@ -655,5 +655,32 @@ public class Solution {
         return -1;
     }
 
+    // 13/07 1648 https://leetcode.com/problems/sell-diminishing-valued-colored-balls/
+    public int maxProfit(int[] inventory, int orders) {
+        Arrays.sort(inventory);
+        long res = 0;
+        int n = inventory.length-1;
+        long count = 1;
+        while(orders > 0){
+            if(n > 0 && inventory[n] - inventory[n-1] > 0 && orders >= count * (inventory[n] - inventory[n-1])){
+                res += count * _sum(inventory[n], inventory[n-1]);
+                orders -= count * (inventory[n] - inventory[n-1]);
+            }else if(n == 0 || inventory[n] - inventory[n-1] > 0){
+                long a = orders / count;
+                res += count * _sum(inventory[n], inventory[n]-a);
+                long b = orders % count;
+                res += b * (inventory[n]-a);
+                orders = 0;
+            }
+            res %= 1000000007;
+            n --;
+            count ++;
+        }
+        return (int)res;
+    }
+
+    private long _sum(long n, long x){
+        return (n * (n+1))/2 - (x * (x+1))/2;
+    }
 
 }
