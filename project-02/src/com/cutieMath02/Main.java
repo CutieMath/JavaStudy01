@@ -4,10 +4,9 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int[] inventory = {2,5};
-        int orders = 4;
+        int n = 4, index = 2,  maxSum = 6;
         Solution solution = new Solution();
-        int res = solution.maxProfit(inventory, orders);
+        int res = solution.maxValue(n, index, maxSum);
         System.out.println(res);
 
         // Note:
