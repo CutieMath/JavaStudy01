@@ -4,9 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int n = 4, index = 2,  maxSum = 6;
+        int[] ribbons = {9,7,5};
+        int k = 4;
         Solution solution = new Solution();
-        int res = solution.maxValue(n, index, maxSum);
+        int res = solution.cutRibbons(ribbons, k);
         System.out.println(res);
 
         // Note:

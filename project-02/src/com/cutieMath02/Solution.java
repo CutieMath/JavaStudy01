@@ -610,7 +610,7 @@ public class Solution {
         return count >= numOfBalls;
     }
 
-    // 06/97 https://github.com/doocs/leetcode/blob/main/solution/1800-1899/1891.Cutting%20Ribbons/README_EN.md
+    // 06/07 https://github.com/doocs/leetcode/blob/main/solution/1800-1899/1891.Cutting%20Ribbons/README_EN.md
     public int maxLength(int[] ribbons, int k) {
         int l = 1;
         int r = Arrays.stream(ribbons).max().getAsInt();
@@ -721,5 +721,34 @@ public class Solution {
         }
         return (int)res;
     }
+
+
+    // 19/07 1891 https://medium.com/@miniChang8/leetcode-cutting-ribbons-96ef52c31cfb
+    public int cutRibbons(int[] ribbons, int k) {
+        // Identify low and high boundaries
+        int l = 1;
+        int r = Arrays.stream(ribbons).max().getAsInt();
+
+        while (l <= r) {
+            int mid = (l + r) / 2;
+            if (canCut2(ribbons, k, mid)) {
+                l = mid + 1;
+            } else {
+                r = mid - 1;
+            }
+        }
+        return r;
+    }
+
+    private boolean canCut2(int[] ribbons, int k, int ribbonLength){
+        int cut = 0;
+        for (int i = 0; i < ribbons.length; i ++){
+            cut += ribbons[i] / ribbonLength;
+        }
+        return cut >= k;
+    }
+
+
+
 
 }
