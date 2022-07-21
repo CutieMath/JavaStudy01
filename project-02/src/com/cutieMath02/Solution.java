@@ -748,7 +748,31 @@ public class Solution {
         return cut >= k;
     }
 
+    // 21/07 2064 https://leetcode.com/problems/minimized-maximum-of-products-distributed-to-any-store/
+    public int minimizedMaximum(int n, int[] quantities) {
+        int l = 1;
+        int r = Integer.MAX_VALUE / 2;
+        while (l < r){
+            int mid = l + (r - l) / 2;
+            if(good(quantities, n, mid)){
+                r = mid;
+            } else {
+                l = mid + 1;
+            }
+        }
+        return l;
+    }
 
+    private boolean good(int[] quantities, int n, int limit){
+        int count = 0;
 
-
+        for (int i = 0; i < quantities.length; i ++){
+            if(quantities[i] % limit == 0){
+                count += quantities[i] / limit;
+            } else {
+                count += quantities[i] / limit + 1;
+            }
+        }
+        return count <= n;
+    }
 }

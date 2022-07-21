@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int[] ribbons = {9,7,5};
-        int k = 4;
+        int[] quantities = {11,6};
+        int n = 6;
         Solution solution = new Solution();
-        int res = solution.cutRibbons(ribbons, k);
+        int res = solution.minimizedMaximum(n, quantities);
         System.out.println(res);
 
         // Note:
