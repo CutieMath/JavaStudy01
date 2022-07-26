@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int[] quantities = {11,6};
-        int n = 6;
+        int[] candies = {5,8,6};
+        int k = 3;
         Solution solution = new Solution();
-        int res = solution.minimizedMaximum(n, quantities);
+        int res = solution.maximumCandies(candies, k);
         System.out.println(res);
 
         // Note:

@@ -775,4 +775,34 @@ public class Solution {
         }
         return count <= n;
     }
+
+    // 26/07 2226 https://leetcode.com/problems/maximum-candies-allocated-to-k-children/
+    public int maximumCandies(int[] candies, long k) {
+        int l = 1;
+        int r = Arrays.stream(candies).max().getAsInt();
+        while (l < r){
+            int mid = l + (r - l) / 2;
+            if(meetsCondition(candies, k, mid)){
+                l = mid + 1;
+            } else {
+                r = mid;
+            }
+        }
+        return meetsCondition(candies, k, l) ? l : l - 1;
+    }
+
+    private boolean meetsCondition(int[] candies, long k, int pileSize){
+        if(pileSize == 0){
+            return true;
+        }
+        long totalPiles = 0;
+        for(int candy: candies){
+            totalPiles += candy / pileSize;
+            if(totalPiles >= k){
+                return true;
+            }
+        }
+        return false;
+    }
+
 }
