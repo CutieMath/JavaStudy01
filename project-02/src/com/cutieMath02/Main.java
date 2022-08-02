@@ -4,10 +4,10 @@ import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args){
-        int[] candies = {5,8,6};
-        int k = 3;
+        int[] nums = {2,1,3};
+        int k = 4;
         Solution solution = new Solution();
-        int res = solution.maximumCandies(candies, k);
+        int res = solution.kthSmallestSubarraySum(nums, k);
         System.out.println(res);
 
         // Note:
