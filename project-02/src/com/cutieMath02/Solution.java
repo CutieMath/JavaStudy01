@@ -841,4 +841,21 @@ public class Solution {
         return count;
     }
 
+    // 03/08/22 49 https://leetcode.com/problems/group-anagrams/
+    public List<List<String>> groupAnagrams(String[] strs) {
+        List<List<String>> groupedAnagrams = new ArrayList<>();
+        HashMap<String, List<String>> myMap = new HashMap<>();
+        for (String current:strs){
+            char[] characters = current.toCharArray();
+            Arrays.sort(characters);
+            String sorted = new String(characters);
+            if(!myMap.containsKey(sorted)){
+                myMap.put(sorted, new ArrayList<>());
+            }
+            myMap.get(sorted).add(current);
+        }
+        groupedAnagrams.addAll(myMap.values());
+        return groupedAnagrams;
+    }
+
 }

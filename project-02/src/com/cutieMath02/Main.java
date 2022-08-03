@@ -1,13 +1,13 @@
 package com.cutieMath02;
 
 import java.util.Arrays;
+import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-        int[] nums = {2,1,3};
-        int k = 4;
+        String[] strs = {"eat","tea","tan","ate","nat","bat"};
         Solution solution = new Solution();
-        int res = solution.kthSmallestSubarraySum(nums, k);
+        List<List<String>>res = solution.groupAnagrams(strs);
         System.out.println(res);
 
         // Note:
