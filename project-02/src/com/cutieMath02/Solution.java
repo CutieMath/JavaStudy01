@@ -858,4 +858,41 @@ public class Solution {
         return groupedAnagrams;
     }
 
+    // 04/08/22 166 https://leetcode.com/problems/fraction-to-recurring-decimal/
+    public String fractionToDecimal(int numerator, int denominator) {
+        // Take care of the edge
+        if(numerator == 0) return "0";
+
+        // Determine neg/pos
+        StringBuilder sb = new StringBuilder();
+        if(numerator < 0 && denominator > 0 || numerator >  0 && denominator < 0){
+            sb.append("-");
+        }
+
+        // Calc the first position
+        long divisor = Math.abs((long) numerator);
+        long dividend = Math.abs((long) denominator);
+        long remainder = divisor % dividend;
+        sb.append(divisor / dividend);
+        if(remainder == 0){
+            return sb.toString();
+        }
+
+        // Calc the decimals
+        sb.append(".");
+        Map<Long, Integer> map = new HashMap<>();
+        while (remainder != 0){
+            if(map.containsKey(remainder)){
+                sb.insert(map.get(remainder), "(");
+                sb.append(")");
+                break;
+            }
+            map.put(remainder, sb.length());
+            remainder *= 10;
+            sb.append(remainder / dividend);
+            remainder %= dividend;
+        }
+        return sb.toString();
+    }
+
 }
