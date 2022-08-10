@@ -5,10 +5,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-        int numerator = 1;
-        int denominator = 2;
+        int n = 10;
         Solution solution = new Solution();
-        String res = solution.fractionToDecimal(numerator, denominator);
+        int res = solution.countPrimes(n);
         System.out.println(res);
 
         // Note:

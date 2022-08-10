@@ -895,4 +895,26 @@ public class Solution {
         return sb.toString();
     }
 
+
+    // 10/08/22 204 https://leetcode.com/problems/count-primes/
+    public int countPrimes(int n) {
+        boolean[] primes = new boolean[n];
+        System.out.println(primes.length);
+        for (int i = 2; i * i < primes.length; i ++){
+            if(!primes[i]){
+                for (int j = i; j * i < primes.length; j ++){
+                    primes[i * j] = true;
+                }
+            }
+        }
+        int res = 0;
+        for (int i = 2; i < primes.length; i ++){
+            if (!primes[i]){
+                res ++;
+            }
+        }
+        return res;
+    }
+
+
 }
