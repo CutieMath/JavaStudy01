@@ -916,5 +916,22 @@ public class Solution {
         return res;
     }
 
+    //16/08/22 409 https://leetcode.com/problems/longest-palindrome/
+    public int longestPalindrome(String s) {
+        int[] char_counts = new int[128];
+        for (char c : s.toCharArray()){
+            char_counts[c] ++;
+        }
+
+        int res = 0;
+        for (Integer char_count: char_counts){
+            res += char_count / 2 * 2; // integer division
+            if( res % 2 == 0 && char_count % 2 == 1){
+                res += 1;
+            }
+        }
+
+        return res;
+    }
 
 }

@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-        int n = 10;
+        String s = "abccccdd";
         Solution solution = new Solution();
-        int res = solution.countPrimes(n);
+        int res = solution.longestPalindrome(s);
         System.out.println(res);
 
         // Note:
