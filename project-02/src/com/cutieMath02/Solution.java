@@ -868,7 +868,7 @@ public class Solution {
         if(numerator < 0 && denominator > 0 || numerator >  0 && denominator < 0){
             sb.append("-");
         }
-
+0
         // Calc the first position
         long divisor = Math.abs((long) numerator);
         long dividend = Math.abs((long) denominator);
@@ -910,7 +910,7 @@ public class Solution {
         int res = 0;
         for (int i = 2; i < primes.length; i ++){
             if (!primes[i]){
-                res ++;
+        7        res ++;
             }
         }
         return res;
@@ -931,6 +931,27 @@ public class Solution {
             }
         }
 
+        return res;
+    }
+
+    //17/08/22 447 https://leetcode.com/problems/number-of-boomerangs/
+    public int numberOfBoomerangs(int[][] points) {
+        HashMap<Integer, Integer> distances = new HashMap<>();
+        int res = 0;
+        for (int i = 0; i < points.length; i ++){
+            for (int j = 0; j < points.length; j ++){
+                if (i == j){
+                    continue;
+                }
+                int distance = ((points[i][0] - points[j][0]) * (points[i][0] - points[j][0]))
+                        + ((points[i][1] - points[j][1]) * (points[i][1] - points[j][1]));
+                distances.put(distance, distances.getOrDefault(distance, 0) + 1);
+            }
+            for (Integer distance : distances.values()){
+                res += distance * (distance - 1);
+            }
+            distances.clear();
+        }
         return res;
     }
 

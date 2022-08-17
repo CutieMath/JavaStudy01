@@ -5,9 +5,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-        String s = "abccccdd";
+        int[][] points = {{0,0},{1,0},{2,0}};
         Solution solution = new Solution();
-        int res = solution.longestPalindrome(s);
+        int res = solution.numberOfBoomerangs(points);
         System.out.println(res);
 
         // Note:
