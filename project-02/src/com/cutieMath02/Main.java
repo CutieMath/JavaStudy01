@@ -5,9 +5,10 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-        int[][] points = {{0,0},{1,0},{2,0}};
+        String s = "cbaebabacd";
+        String p = "abc";
         Solution solution = new Solution();
-        int res = solution.numberOfBoomerangs(points);
+        List<Integer> res = solution.findAnagrams(s, p);
         System.out.println(res);
 
         // Note:

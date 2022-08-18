@@ -868,7 +868,7 @@ public class Solution {
         if(numerator < 0 && denominator > 0 || numerator >  0 && denominator < 0){
             sb.append("-");
         }
-0
+
         // Calc the first position
         long divisor = Math.abs((long) numerator);
         long dividend = Math.abs((long) denominator);
@@ -955,4 +955,34 @@ public class Solution {
         return res;
     }
 
+
+    // 18/08/22 438 https://leetcode.com/problems/find-all-anagrams-in-a-string/
+    public List<Integer> findAnagrams(String s, String p) {
+        int[] charCount = new int[26];
+        for(int i = 0; i < p.length(); i++) charCount[p.charAt(i) - 'a']++;
+        List<Integer> res = new ArrayList<>();
+
+        // The left and right end represent the end of a window.
+        // toVisit gives # elements remaining to be visited in the window, till we slide the window.
+        int left = 0, right = 0, toVisit = p.length();
+        while(right < s.length()){
+            // If char at right end of window is present in p(charCount)
+            if(charCount[s.charAt(right) - 'a'] >= 1) {
+                toVisit--;
+            }
+            charCount[s.charAt(right) - 'a']--; // Reduce count of char at right end.
+            right++; // Increment right end
+            if(toVisit == 0) res.add(left);
+
+            // Completely scan the window
+            if(right - left == p.length()){
+                if(charCount[s.charAt(left) - 'a'] >= 0){
+                    toVisit++;
+                }
+                charCount[s.charAt(left) - 'a']++;
+                left++;
+            }
+        }
+        return res;
+    }
 }
