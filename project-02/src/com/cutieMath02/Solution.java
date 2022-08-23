@@ -910,7 +910,7 @@ public class Solution {
         int res = 0;
         for (int i = 2; i < primes.length; i ++){
             if (!primes[i]){
-        7        res ++;
+                res ++;
             }
         }
         return res;
@@ -985,4 +985,20 @@ public class Solution {
         }
         return res;
     }
+
+
+    public int findLHS(int[] nums) {
+        int res = 0;
+        Map<Integer, Integer> count = new HashMap<>();
+        for (int i : nums){
+            count.put(i, count.getOrDefault(i,0) + 1);
+        }
+        for (int i : count.keySet()) {
+            if (count.containsKey(i + 1)){
+                res = Math.max(res, count.get(i) + count.get(i + 1));
+            }
+        }
+        return res;
+    }
+
 }
