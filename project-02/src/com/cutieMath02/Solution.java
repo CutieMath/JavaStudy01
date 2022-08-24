@@ -986,7 +986,7 @@ public class Solution {
         return res;
     }
 
-
+    // 23/08/22 594 https://leetcode.com/problems/longest-harmonious-subsequence/
     public int findLHS(int[] nums) {
         int res = 0;
         Map<Integer, Integer> count = new HashMap<>();
@@ -1000,5 +1000,23 @@ public class Solution {
         }
         return res;
     }
+
+    // 25/08/22 532 https://leetcode.com/problems/k-diff-pairs-in-an-array/submissions/
+    public int findPairs(int[] nums, int k) {
+        Map<Integer, Integer> map = new HashMap<>();
+
+        for (int num : nums)
+            map.put(num, map.getOrDefault(num, 0) + 1);
+
+        int res = 0;
+        for (int i: map.keySet()){
+            if ((k > 0 && map.containsKey(i + k)) || (k == 0 && map.get(i) > 1))
+                res ++;
+        }
+
+        return res;
+
+    }
+
 
 }

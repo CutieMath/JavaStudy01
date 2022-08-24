@@ -5,9 +5,10 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-        int[] nums = {1,3,2,2,5,2,3,7};
+        int[] nums = {3,1,4,1,5};
+        int k = 2;
         Solution solution = new Solution();
-        int res = solution.findLHS(nums);
+        int res = solution.findPairs(nums, k);
         System.out.println(res);
 
         // Note:
