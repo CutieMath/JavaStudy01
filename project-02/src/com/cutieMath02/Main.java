@@ -5,10 +5,9 @@ import java.util.List;
 
 public class Main {
     public static void main(String[] args){
-        int[] nums = {3,1,4,1,5};
-        int k = 2;
+        String s = "10101";
         Solution solution = new Solution();
-        int res = solution.findPairs(nums, k);
+        int res = solution.numWays(s);
         System.out.println(res);
 
         // Note:

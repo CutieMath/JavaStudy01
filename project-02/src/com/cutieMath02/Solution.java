@@ -1036,4 +1036,41 @@ public class Solution {
     }
 
 
+    // 13/08/22 https://leetcode.com/problems/number-of-ways-to-split-a-string/
+    int MOD = (int)Math.pow(10, 9) + 7;
+    public int numWays(String s) {
+        // If sum % 3 != 0, there will be no results
+        int numOnes = (int)s.chars()
+                .filter(c -> c == '1')
+                .count();
+        if(numOnes % 3 != 0) {
+            return 0;
+        }
+
+        if(numOnes == 0){
+            long len = s.length();
+            return (int) ((int)(len - 1) * (len - 2) / 2 % MOD);
+        }
+
+        // Compute results
+        int onePerGroup = numOnes / 3;
+        int counter = 0;
+        long firstBlock = 0, secondBlock = 0;
+        for (char letter : s.toCharArray()){
+            if (letter == "1".charAt(0)){
+                counter ++;
+            }
+            if(counter == onePerGroup){
+                firstBlock ++ ;
+            } else if ( counter == 2 * onePerGroup){
+                secondBlock ++;
+            }
+
+        }
+        return (int)(firstBlock * secondBlock % MOD);
+
+    }
+
+
+
 }
